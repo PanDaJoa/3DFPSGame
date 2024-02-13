@@ -11,10 +11,21 @@ public class FPSCamera : MonoBehaviour
 {
     // 목표: 마우스를 조작하면 카메라를 그 방향으로 회전시키고 싶다.
     // 필요 속성: 회전 속도, 누적할 x각도와 y각도
+    // - 회전 속도
     public float RotationSpeed = 200; // 초당 200도까지 회전 가능한 속도
     // 누적할 x각도와 y각도
     private float _mx = 0;
     private float _my = 0;
+
+
+    /* 카메라 이동 */
+    // 목표: 카메라를 캐릭터의 눈으로 이동시키고 싶다.
+    // 필요 속성:
+    // - 카메라의 눈 위치
+    public Transform Target;
+    // 구현 순서:
+    // 1. 캐릭터의 눈 위치로 카메라를 이동시킨다.
+
 
     // 순서:
     // 1. 마우스 입력(drag) 받는다.
@@ -29,6 +40,9 @@ public class FPSCamera : MonoBehaviour
     }
     private void Update()
     {
+        // 1. 캐릭터의 눈 위치로 카메라를 이동시킨다.
+        transform.position = Target.position;
+
         // 1. 마우스 입력(drag) 받는다.
         float mouseX = Input.GetAxis("Mouse X"); // 방향에 따라 -1 ~ 1 사이의 값 반환
         float mouseY = Input.GetAxis("Mouse Y");
@@ -38,7 +52,7 @@ public class FPSCamera : MonoBehaviour
 
         // 2. 마우스 입력 값을 이용해 회전 방향을 구한다.
         Vector3 rotationDir = new Vector3(mouseX, mouseY, z:0);
-        rotationDir.Normalize(); // 정규화
+        //rotationDir.Normalize(); // 정규화
 
         // 3. 회전 방향 회전한다.
         // 새로운 위치 = 이전 위치 + 방향 * 속도 * 시간
@@ -55,6 +69,7 @@ public class FPSCamera : MonoBehaviour
         //rotation.x = Mathf.Clamp(value:rotation.x, min:-90f, max:90f);
         //transform.eulerAngles = rotation;
         _my = Mathf.Clamp(value: _my, min: -90f, max: 90f);
+       // _mx = Mathf.Clamp(value: _mx, min: -270f, max: 270f);
 
         transform.eulerAngles = new Vector3(x:-_my, y:_mx, z:0);
 
