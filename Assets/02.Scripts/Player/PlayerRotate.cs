@@ -10,7 +10,7 @@ public class PlayerRotate : MonoBehaviour
     public float RotationSpeed = 200; // 초당 200도까지 회전 가능한 속도
     // 누적할 x각도와 y각도
     private float _mx = 0;
-    private float _my = 0;
+    //private float _my = 0;
 
     void Update()
     {
