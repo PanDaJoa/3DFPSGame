@@ -25,8 +25,9 @@ public class PlayerMove : MonoBehaviour
     // 필요 속성:
     // - 점프 파워 값
     public float JumpPower = 10f;
-
-
+    public int JumpMaxCount = 2;
+    public int JumpRemainCount;
+    private bool _isJumping = false;
     // 목표: 캐릭터에 중력을 적용하고 싶다.
     // 필요 속성:
     // -중력 값
@@ -89,24 +90,52 @@ public class PlayerMove : MonoBehaviour
 
         StaminaSliderUI.value = Stamina / MaxStamina;
 
-        // 점프 구현 
-        // 1. 만약에 [Spacebar] 버튼을 누르는 순간 && 땅이면...
-        if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded) // 누른 그 순간 땅일때 true
+
+        // 구현 순서 : 
+        if (_characterController.isGrounded)
         {
-            // 2. 플레이어에게 y축에 있어 점프 파워를 적용한다.
-            _yVelocity = JumpPower;
+            _isJumping = false;
+            _yVelocity = 0f;
+            JumpRemainCount = JumpMaxCount;
+        }
+
+        if (_characterController.collisionFlags != CollisionFlags.None)
+        {
+            
+            // 점프를 중단
+            _isJumping = false;
+            _yVelocity = -1f;
         }
 
 
+
+        // 점프 구현 
+        // 1. 만약에 [Spacebar] 버튼을 누르는 순간 && (땅이거나 or 점프 횟수가 남아있다면)
+        if (Input.GetKeyDown(KeyCode.Space) && (_characterController.isGrounded ||(_isJumping && JumpRemainCount > 0))) // 누른 그 순간 땅일때 true
+        {
+           
+                _isJumping = true;
+                
+                JumpRemainCount--;
+
+                // 2. 플레이어에게 y축에 있어 점프 파워를 적용한다.
+                _yVelocity = JumpPower;
+        }
+
+
+ 
         // 3.1 중력 적용
-        // 1. 중력 가속도가 누적된가.
-        _yVelocity += _gravity * Time.deltaTime; 
+        // 1. 중력 가속도가 누적된다.
+        _yVelocity += _gravity * Time.deltaTime;
+       
+        
         // 2. 플레이어에게 y축에 있어 중력을 적용한다.
          dir.y = _yVelocity;
 
         // 3-2. 이동하기
         //transform.position += speed * dir * Time.deltaTime;
         _characterController.Move(dir * speed * Time.deltaTime);
+        
 
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
@@ -117,6 +146,5 @@ public class PlayerMove : MonoBehaviour
         {
             CameraManager.Instance.SetCameraMode(CameraMode.TPS);
         }
-
     }
 }

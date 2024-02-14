@@ -45,4 +45,5 @@ public class CameraManager : MonoBehaviour
         //_FPSCamera.enabled = (mode == CameraMode.FPS);
         //_TPSCamera.enabled = (mode == CameraMode.TPS);
     }
+
 }

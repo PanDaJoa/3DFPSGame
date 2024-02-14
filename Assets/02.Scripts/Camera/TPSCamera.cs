@@ -39,6 +39,7 @@ public class TPSCamera : MonoBehaviour
         // 4. 마우스 입력에 따라 회전 방향을 누적한다.
         _mx += mouseX * RotationSpeed * Time.deltaTime;
         _my += mouseY * RotationSpeed * Time.deltaTime;
+        
         //_my = Mathf.Clamp(_my, -20f, 10f);
 
         if (CameraManager.Instance.Mode == CameraMode.TPS)
@@ -49,6 +50,6 @@ public class TPSCamera : MonoBehaviour
         }
 
 
-        //transform.position = Target.position - transform.forward * Offset.magnitude + Vector3.up * Offset.y;
+       // transform.position = Target.position - transform.forward * Offset.magnitude + Vector3.up * Offset.y;
     }
 }
