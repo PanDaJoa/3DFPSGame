@@ -25,6 +25,7 @@ public class PlayerFire : MonoBehaviour
     public List<GameObject> BombPool; // 폭탄 창고
     public int BombPoolSize = 5;
 
+    
     private void Start()
     {
         // 폭탄 창고 생성
