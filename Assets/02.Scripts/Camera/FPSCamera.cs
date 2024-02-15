@@ -12,12 +12,12 @@ public class FPSCamera : MonoBehaviour
     // 목표: 마우스를 조작하면 카메라를 그 방향으로 회전시키고 싶다.
     // 필요 속성:
     // - 회전 속도
-    public float RotationSpeed = 200; // 초당 200도까지 회전 가능한 속도
+    public float RotationSpeed = 500; // 초당 200도까지 회전 가능한 속도
     // 누적할 x각도와 y각도
     private float _mx = 0;
     private float _my = 0;
 
-
+    private bool isPaused = false; // 게임이 일시정지 상태인지 아닌지를 확인하는 변수
 
     /** 카메라 이동 **/
     // 목표: 카메라를 캐릭터의 눈으로 이동시키고 싶다.
@@ -32,11 +32,27 @@ public class FPSCamera : MonoBehaviour
 
 
 
-    private void Start()
+  /*  private void Start()
     {
         // 마우스 커서 없애고, 고정
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }*/
+    void Update()
+    {
+        // ESC키를 눌렀을 때를 감지합니다.
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // ESC키를 누른 경우, 마우스 커서를 보이게 하고 움직임을 해제합니다.
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            // ESC키를 누르지 않은 경우, 마우스 커서를 숨기고 움직임을 고정합니다.
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     // 순서:
@@ -50,6 +66,7 @@ public class FPSCamera : MonoBehaviour
         {
             // 1. 캐릭터의 눈 위치로 카메라를 이동시킨다.
             transform.position = Target.position;
+
         }
 
 
@@ -85,5 +102,10 @@ public class FPSCamera : MonoBehaviour
         // 1. 짐벌락 현상
         // 2. 0보다 작아지면 -1이 아닌 359(360-1)가 된다. (유니티 내부에서 이렇게 자동 연산)
         // 위 2번 문제 해결을 위해서 우리가 미리 연산을 해줘야 한다.
+
+        if (isPaused)
+        {
+            return; // 게임이 일시정지 상태인 경우, LateUpdate 내의 카메라 움직임 등의 로직을 실행하지 않습니다.
+        }
     }
 }
