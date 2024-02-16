@@ -31,24 +31,10 @@ public class PlayerGunFire : MonoBehaviour
     private Coroutine _reloadCoroutine;
     public bool _isReloading;
 
-    private IEnumerator Reload_Coroutine(float delayTime)
-    {
-        
-        yield return new WaitForSeconds(delayTime);
-
-        if (_isReloading)
-        {
-            BulletRemainCount = BulletMaxCount;
-            RefreshUI();
-            ReloadUI.text = "";
-            _isReloading = false; // 재장전이 완료되었으므로 false로 설정
-        }
-    }
-
     private void Update()
     {
         Timer += Time.deltaTime;
-        // 1. 만약에 마우스 왼쪽 버튼을 누른 상태 && 쿨타임이 다 지난 상태
+        // 1. 만약에 마우스 왼쪽 버튼을 누른 상태 && 총알 쿨타임 && 총알이 0보다 클 때 발사
         if (Input.GetMouseButton(0) && Timer >= FireCoolTime && BulletRemainCount > 0)
         {
             // 재장전 중이라면 재장전 코루틴을 중지
@@ -60,6 +46,7 @@ public class PlayerGunFire : MonoBehaviour
             }
             BulletRemainCount--;
             Timer = 0;
+
             // 2. 레이(광선)을 생성하고,위치와 방향을 설정한다.
             Ray ray = new Ray(Camera.main.transform.position,Camera.main.transform.forward);
             // 3. 레이를 발사한다.
@@ -77,11 +64,9 @@ public class PlayerGunFire : MonoBehaviour
             }
             RefreshUI();
         }
-        
+        // R 키를 누르면 재장전을 시작
         if (Input.GetKeyDown(KeyCode.R) && BulletMaxCount > 0)
         {
-            // BulletRemainCount = BulletMaxCount;
-            // RefreshUI();
             _isReloading = true;
             StartCoroutine(Reload_Coroutine(1.5f));
             ReloadingUI();
@@ -89,6 +74,19 @@ public class PlayerGunFire : MonoBehaviour
        
     }
 
+    private IEnumerator Reload_Coroutine(float delayTime) // 재장전 코루틴
+    {
+
+        yield return new WaitForSeconds(delayTime);
+
+        if (_isReloading)
+        {
+            BulletRemainCount = BulletMaxCount; // 총알 장전
+            RefreshUI(); // 총알 장전 UI
+            ReloadUI.text = ""; // 1.5초 후 공백으로 만듬
+            _isReloading = false; // false는 재장전이 아닐 때를 의미함
+        }
+    }
 
     private void RefreshUI()
     {
