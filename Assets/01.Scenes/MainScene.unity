@@ -1487,7 +1487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc276ed9d0c8284e98cd9622b89a708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 500
   Target: {fileID: 1660658498}
 --- !u!114 &963194230
 MonoBehaviour:
@@ -1501,9 +1500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d609ecebcccd794a97cb6777079f4d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 500
   Target: {fileID: 1660658498}
-  Offset: {x: 0, y: 3, z: -1}
+  Offset: {x: 0, y: 3, z: -10}
+  a: 0
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1516,9 +1515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b2adf976fbc2a4d918a8005fff6fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _FPSCamera: {fileID: 963194229}
-  _TPSCamera: {fileID: 963194230}
-  Mode: 0
+  RotationSpeed: 500
+  Mode: 1
 --- !u!1 &1021856903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,11 +2500,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1bfecafcd5de554a9f0cfb2b9fbe228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BombPrefeb: {fileID: 6493642851671870434, guid: 79a50a4630bbb4447a9ca0e9b5a14bc0, type: 3}
+  BombPrefab: {fileID: 6493642851671870434, guid: 79a50a4630bbb4447a9ca0e9b5a14bc0, type: 3}
   FirePosition: {fileID: 38928326}
   ThrowPower: 15
-  BombScoreTextUI: {fileID: 2048081121}
-  BombScore: 3
+  BombRemainCount: 100
+  BombMaxCount: 100
+  BombTextUI: {fileID: 2048081121}
+  BombPool: []
+  BombPoolSize: 5
 --- !u!1 &2048081119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2577,7 +2578,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 100 / 100
 --- !u!222 &2048081122
 CanvasRenderer:
   m_ObjectHideFlags: 0
