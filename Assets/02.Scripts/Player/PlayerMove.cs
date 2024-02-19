@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour, IHitable
 {
     // 목표: 키보드 방향키(wasd)를 누르면 캐릭터를 바라보는 방향 기준으로 이동시키고 싶다.
     // 속성:
@@ -179,6 +179,14 @@ public class PlayerMove : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             CameraManager.Instance.SetCameraMode(CameraMode.TPS);
+        }
+    }
+    public void Hit(int damage)
+    {
+        Health -= damage;
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
