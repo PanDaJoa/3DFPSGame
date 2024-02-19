@@ -51,15 +51,20 @@ public class PlayerMove : MonoBehaviour
     private bool _isClimbing = false;
     // 구현 순서
 
+    public float Health;
+    public float MaxHealth = 100;
+    public Slider HealthSliderUI;
 
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+       
     }
 
     private void Start()
     {
         Stamina = MaxStamina;
+        Health = MaxHealth;
     }
 
     // 구현순서
@@ -68,6 +73,7 @@ public class PlayerMove : MonoBehaviour
     // 3. 이동하기
     void Update()
     {
+        HealthSliderUI.value = Health / MaxHealth;
         float speed = MoveSpeed; // 5
         // 1. 만약 벽에 닿아 있는데
         if (Stamina > 0 && _characterController.collisionFlags == CollisionFlags.Sides)

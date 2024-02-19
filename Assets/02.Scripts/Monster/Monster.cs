@@ -1,24 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
-    public int health;
-    public int Maxhealth = 100;
-
+    [Range(0, 100)]
+    public float Health;
+    public float MaxHealth = 100;
+    public Slider HealthSliderUI;
     public void Init()
     {
-        health = Maxhealth;
+        Health = MaxHealth;
+        
     }
     void Start()
     {
         Init();
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        HealthSliderUI.value = Health / MaxHealth;
     }
 }
