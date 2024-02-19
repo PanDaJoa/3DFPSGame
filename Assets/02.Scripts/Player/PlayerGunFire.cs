@@ -18,6 +18,7 @@ public class PlayerGunFire : MonoBehaviour
     public float reboundDuration = 0.1f; //반동 지속
     public float reboundTime; //반동시간
 
+
     // 총알 개수
     public int BulletRemainCount = 30;
     // 최대총알숫자
@@ -29,7 +30,9 @@ public class PlayerGunFire : MonoBehaviour
     public Text ReloadUI;
 
     private Coroutine _reloadCoroutine;
-    public bool _isReloading;
+
+    private const float Relode = 1.5f; // 재장전 시간
+    public bool _isReloading = false; // 재장전 중이냐?
 
     private void Update()
     {
@@ -68,7 +71,7 @@ public class PlayerGunFire : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && BulletMaxCount > 0)
         {
             _isReloading = true;
-            StartCoroutine(Reload_Coroutine(1.5f));
+            StartCoroutine(Reload_Coroutine(Relode));
             ReloadingUI();
         }
        
