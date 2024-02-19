@@ -34,6 +34,8 @@ public class PlayerGunFire : MonoBehaviour
     private const float Relode = 1.5f; // 재장전 시간
     public bool _isReloading = false; // 재장전 중이냐?
 
+    public int Damage = 1;
+
     private void Update()
     {
         Timer += Time.deltaTime;
@@ -53,12 +55,25 @@ public class PlayerGunFire : MonoBehaviour
             // 2. 레이(광선)을 생성하고,위치와 방향을 설정한다.
             Ray ray = new Ray(Camera.main.transform.position,Camera.main.transform.forward);
             // 3. 레이를 발사한다.
-
             // 4. 레이가 부딛힌 대상의 정보를 받아온다.
-            RaycastHit hitInfo;
+            RaycastHit hitInfo; // RaycastHit 맞은 정보가 담겨져 있다.
             bool IsHit = Physics.Raycast(ray, out hitInfo);
             if (IsHit)
             {
+                //실습 과제 18. 레이저를 몬스터에게 맞출 시 몬스터 체력 닳는 기능 구현
+                IHitable hitObject = hitInfo.collider.GetComponent<IHitable>();
+                if (hitObject != null)  // 때릴 수 있는 친구인가요?
+                {
+                    hitObject.Hit(Damage);
+                }
+/*                
+                 
+                if(hitInfo.collider.CompareTag("Monster"))
+                {
+                    Monster monster = hitInfo.collider.GetComponent<Monster>();
+                    monster.Hit(Damage);
+                }*/
+
                 // 5. 부딛힌 위치에 (총알이 튀는) 이펙트를 위치한다.
                 HitEffect.gameObject.transform.position = hitInfo.point;
                 // 6. 이펙트가 쳐다보는 방향을 부딛힌 위치에 법선 벡터로 한다.반동
