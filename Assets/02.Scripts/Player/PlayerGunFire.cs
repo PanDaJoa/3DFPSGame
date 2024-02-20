@@ -16,8 +16,8 @@ public class PlayerGunFire : MonoBehaviour
     private const int ZoomFOV = 20; // 줌 모드일 때의 시야 각도
     private bool _isZoomMode = false;  // 현재 줌 모드인지 아닌지 표시
 
-    public GameObject CrosshairUI; // 기본 조준점 UI
-    public GameObject CrosshairZoomUI; // 줌 모드일 때의 조준점 UI
+    public GameObject CrosshairUI; // 기본 조준점 UI 
+    public GameObject CrosshairZoomUI; // 줌 모드일 때의 조준점 UI 
 
     public List<Gun> GunInventory; // 플레이어가 가지고 있는 총들의 인벤토리
 
@@ -160,9 +160,18 @@ public class PlayerGunFire : MonoBehaviour
 
         _timer += Time.deltaTime;
 
-        // 1. 만약에 마우스 왼쪽 버튼을 누른 상태 && 쿨타임이 다 지난 상태 && 총알 개수 > 0
-        if (Input.GetMouseButton(0) && _timer >= CurrentGun.FireCooltime && CurrentGun.BulletRemainCount > 0)
+        // 1. 만약에 마우스 왼쪽 버튼을 누른 상태 && 쿨타임이 다 지난 상태
+        if (Input.GetMouseButton(0) && _timer >= CurrentGun.FireCooltime)
         {
+            // 총알이 없을 경우 총을 쏘면 재장전
+            if (CurrentGun.BulletRemainCount <= 0)
+            {
+                if (!_isReloading)
+                {
+                    StartCoroutine(Reload_Coroutine());
+                }
+                return;
+            }
             // 재장전 취소
             if (_isReloading)
             {
