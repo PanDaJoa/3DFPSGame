@@ -14,6 +14,8 @@ public class Gun : MonoBehaviour
     public GunTpye GTpye;
 
     public Sprite ProfileImage;
+    public Sprite ZoomImage;
+    
     
 
     // 공격력

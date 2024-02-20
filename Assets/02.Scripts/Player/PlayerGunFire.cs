@@ -6,19 +6,15 @@ using UnityEngine.UI;
 
 public class PlayerGunFire : MonoBehaviour
 {
-
-    
-
     // 무기 인벤토리
     public List<Gun> GunInventory;
    
-
-    
     public Gun CurrentGun;       // 현재 들고있는 총
     private int currentGunIndex; //현재 들고있는 총의 순서
     
     // 무기 이미지 UI
     public Image GunImageUI; // 총 이미지
+    
 
     // 목표: 마우스 왼족 버튼을 누르면 시선이 바라보는 방향으로 총을 발사하고 싶다.
     // 필요 속성
@@ -27,8 +23,12 @@ public class PlayerGunFire : MonoBehaviour
 
     public float Timer = 0;
 
+    private const int DefaultF0V = 60;
+    private const int ZoomF0V    = 20;
+    private bool _isZoomMode = false; // 줌 모드냐?
 
-
+    public GameObject CrosshairUI;
+    public GameObject CrosshairZoomUI;
 
 
     // 총알집
@@ -44,13 +44,34 @@ public class PlayerGunFire : MonoBehaviour
 
     private void Start()
     {
-        RifreshGun();
+        currentGunIndex = 0;
+
+        // 총알 개수 초기화
+        RefreshUI();
+        RefreshGun();
     }
 
 
     private void Update()
     {
         Timer += Time.deltaTime;
+        if (Input.GetMouseButtonDown(2))
+        {
+            if (_isZoomMode)
+            {
+                _isZoomMode = false;
+                Camera.main.fieldOfView = DefaultF0V;
+                
+            }
+            else
+            {
+                _isZoomMode = true;
+                Camera.main.fieldOfView = ZoomF0V;
+                
+            }
+            RefreshUI();
+        }
+        
         if (Input.GetKeyDown(KeyCode.LeftBracket)) // '['
         {
             // 뒤로가기 
@@ -61,7 +82,7 @@ public class PlayerGunFire : MonoBehaviour
           
             }
             CurrentGun = GunInventory[currentGunIndex];
-            RifreshGun();
+            RefreshGun();
             RefreshUI();
         }
         else if (Input.GetKeyDown(KeyCode.RightBracket)) // ']'
@@ -74,29 +95,32 @@ public class PlayerGunFire : MonoBehaviour
                 
             }
             CurrentGun = GunInventory[currentGunIndex];
-            RifreshGun();
+            RefreshGun();
             RefreshUI();
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentGunIndex = 0;
             CurrentGun = GunInventory[0];
-            RifreshGun();
+            RefreshGun();
             RefreshUI();
+            
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentGunIndex = 1;
             CurrentGun = GunInventory[1];
-            RifreshGun();
+            RefreshGun();
             RefreshUI();
+            
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             currentGunIndex = 2;
             CurrentGun = GunInventory[2];
-            RifreshGun();
+            RefreshGun();
             RefreshUI();
+            
         }
         // 1. 만약에 마우스 왼쪽 버튼을 누른 상태 && 총알 쿨타임 && 총알이 0보다 클 때 발사
         if (Input.GetMouseButton(0) && Timer >= CurrentGun.FireCoolTime && CurrentGun.BulletRemainCount > 0)
@@ -162,6 +186,8 @@ public class PlayerGunFire : MonoBehaviour
 
     private void RefreshUI()
     {
+        CrosshairUI.SetActive(!_isZoomMode);
+        CrosshairZoomUI.SetActive(_isZoomMode);
         GunImageUI.sprite = CurrentGun.ProfileImage;
         bulletUI.text = $"{CurrentGun.BulletRemainCount}/{CurrentGun.BulletMaxCount}";
     }
@@ -170,7 +196,7 @@ public class PlayerGunFire : MonoBehaviour
         ReloadUI.text = $"{"재장전 중..."}";
     }
 
-    public void RifreshGun()
+    public void RefreshGun()
     {
         foreach (Gun g in GunInventory)
         {
