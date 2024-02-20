@@ -1,39 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-public enum GunTpye 
+
+public enum GunType
 {
     Rifle,  // 따발총
-    Sniper, // 스나이퍼
-    Pistol,
+    Sniper, // 저격총 
+    Pistol, // 권총
 }
 
 public class Gun : MonoBehaviour
 {
-    public GunTpye GTpye;
+    public GunType GType;
 
+    // - 대표 이미지
     public Sprite ProfileImage;
-    public Sprite ZoomImage;
-    
-    
 
-    // 공격력
+    // - 공격력
     public int Damage = 10;
 
-    // 발사 쿨타임
-    public float FireCoolTime = 0.2f;
+    // - 발사 쿨타임
+    public float FireCooltime = 0.2f;
 
-    // 총알 개수
-    public int BulletRemainCount = 30;
+
+    // - 총알 개수
+    public int BulletRemainCount;
     public int BulletMaxCount = 30;
 
-    // 재장전 시간
-    public float Relode = 1.5f;
+    // - 재장전 시간
+    public float ReloadTime = 1.5f;
 
     private void Start()
     {
+        // 총알 개수 초기화
         BulletRemainCount = BulletMaxCount;
-        
     }
 }
