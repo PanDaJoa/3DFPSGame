@@ -30,6 +30,8 @@ public class PlayerGunFire : MonoBehaviour
 
     public Image GunImageUI; // 현재 총의 이미지를 표시하는 UI
 
+
+
     private void Start()
     {
         _currentGunIndex = 0;
@@ -42,7 +44,7 @@ public class PlayerGunFire : MonoBehaviour
     private void RefreshUI()
     {
         GunImageUI.sprite = CurrentGun.ProfileImage;
-        BulletTextUI.text = $"{CurrentGun.BulletRemainCount}/{CurrentGun.BulletMaxCount}";
+        BulletTextUI.text = $"{CurrentGun.BulletRemainCount}/{CurrentGun.BulletMaxCount}"; // 불렛 총알 수 이미지
 
         CrosshairUI.SetActive(!_isZoomMode);
         CrosshairZoomUI.SetActive(_isZoomMode);
@@ -52,28 +54,33 @@ public class PlayerGunFire : MonoBehaviour
     {
         _isReloading = true;
 
+        _isZoomMode = false;
+        RefreshZoomMode();
+        RefreshUI();
+
         // R키 누르면 1.5초 후 재장전, (중간에 총 쏘는 행위를 하면 재장전 취소)
         yield return new WaitForSeconds(CurrentGun.ReloadTime);
         CurrentGun.BulletRemainCount = CurrentGun.BulletMaxCount;
         RefreshUI();
 
         _isReloading = false;
+        
     }
 
     // 줌 모드에 따라 카메라 FOV 수정해주는 메서드
     private void RefreshZoomMode()
     {
-        if (!_isZoomMode)
+        if (!_isZoomMode) // 줌이 아닐때
         {
-            Camera.main.fieldOfView = DefaultFOV;
+            Camera.main.fieldOfView = DefaultFOV; // 기본 설정
         }
         else
         {
-            Camera.main.fieldOfView = ZoomFOV;
+            Camera.main.fieldOfView = ZoomFOV;  // 줌 설정
         }
     }
     private void Update()
-    {
+    {    
         // 마우스 휠 버튼 눌렀을 때 && 현재 총이 스나이퍼
         if (Input.GetMouseButtonDown(2) && CurrentGun.GType == GunType.Sniper)
         {
