@@ -14,10 +14,6 @@ public class PlayerGunFire : MonoBehaviour
     public float Timer = 0;
     public float FireCoolTime = 0.2f;
 
-    public float rebound = 2f; //반동 크기
-    public float reboundDuration = 0.1f; //반동 지속
-    public float reboundTime; //반동시간
-
 
     // 총알 개수
     public int BulletRemainCount = 30;
@@ -34,7 +30,7 @@ public class PlayerGunFire : MonoBehaviour
     private const float Relode = 1.5f; // 재장전 시간
     public bool _isReloading = false; // 재장전 중이냐?
 
-    public int Damage = 1;
+    public int Damage = 10;
 
     private void Update()
     {
