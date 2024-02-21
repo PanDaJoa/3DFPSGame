@@ -12,7 +12,7 @@ public class PlayerMoveAbility : MonoBehaviour, IHitable
     public float RunSpeed = 10; // 뛰는 속도
 
     public float Stamina = 100;             // 스태미나
-    public const float MaxStamina = 100;    // 스태미나 최대량
+    public float MaxStamina = 100;    // 스태미나 최대량
     public float StaminaConsumeSpeed = 33f; // 초당 스태미나 소모량
     public float StaminaChargeSpeed = 50;   // 초당 스태미나 충전량
 

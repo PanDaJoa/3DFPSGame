@@ -7,11 +7,12 @@ using UnityEngine.UI;
 // 데이터 관리 -> 데이터를 생성, 수정, 삭제, 조회(검색)
 public class ItemManager : MonoBehaviour
 {
-    public ItemManager Instance { get; private set; }
+    public static ItemManager Instance { get; private set; }
 
     public Text HealthItemCountTextUI;
     public Text StaminaItemCountTextUI;
     public Text BulletItemCountTextUI;
+
 
     private void Awake()
     {
@@ -36,6 +37,7 @@ public class ItemManager : MonoBehaviour
         RefreshUI();
     }
 
+
     // 1. 아이템 추가(생성)
     public void AddItem(ItemType itemType)
     {
@@ -59,8 +61,10 @@ public class ItemManager : MonoBehaviour
                 return ItemList[i].Count;
             }
         }
+
         return 0;
     }
+
 
     // 3. 아이템 사용
     public bool TryUseItem(ItemType itemType)
@@ -72,13 +76,16 @@ public class ItemManager : MonoBehaviour
                 return ItemList[i].TryUse();
             }
         }
+
         return false;
     }
 
+
+    // UI를 새로고침 하는 함수
     public void RefreshUI()
     {
-        HealthItemCountTextUI.text = $"x{GetItemCount(ItemType.Health):d2}";
-        StaminaItemCountTextUI.text = $"x{GetItemCount(ItemType.Stamina):d2}";
-        BulletItemCountTextUI.text = $"x{GetItemCount(ItemType.Bullet):d2}";
+        HealthItemCountTextUI.text = $"x{GetItemCount(ItemType.Health)}";
+        StaminaItemCountTextUI.text = $"x{GetItemCount(ItemType.Stamina)}";
+        BulletItemCountTextUI.text = $"x{GetItemCount(ItemType.Bullet)}";
     }
 }
