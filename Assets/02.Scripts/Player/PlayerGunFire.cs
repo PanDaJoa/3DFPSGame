@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ public class PlayerGunFire : MonoBehaviour
     private const int DefaultFOV = 60; // 기본 시야 각도
     private const int ZoomFOV = 20; // 줌 모드일 때의 시야 각도
     private bool _isZoomMode = false;  // 현재 줌 모드인지 아닌지 표시
+    private const float ZoomInDuration = 0.3f;
+    private const float ZoomOutDuration = 0.2f;
+    private float _zoomProgress; // 0 ~ 1
 
     public GameObject CrosshairUI; // 기본 조준점 UI 
     public GameObject CrosshairZoomUI; // 줌 모드일 때의 조준점 UI 
@@ -30,7 +34,7 @@ public class PlayerGunFire : MonoBehaviour
 
     public Image GunImageUI; // 현재 총의 이미지를 표시하는 UI
 
-
+    
 
     private void Start()
     {
@@ -80,16 +84,31 @@ public class PlayerGunFire : MonoBehaviour
         }
     }
     private void Update()
-    {    
+    {
+        
         // 마우스 휠 버튼 눌렀을 때 && 현재 총이 스나이퍼
-        if (Input.GetMouseButtonDown(2) && CurrentGun.GType == GunType.Sniper)
+        if (Input.GetMouseButtonDown(1) && CurrentGun.GType == GunType.Sniper)
         {
             _isZoomMode = !_isZoomMode; // 줌 모드 뒤집기
-            RefreshZoomMode();
-
+            _zoomProgress = 0f;
             RefreshUI();
+            
         }
 
+        if (CurrentGun.GType == GunType.Sniper && _zoomProgress < 1)
+        {
+            // Lerp
+            if (_isZoomMode) // 줌인
+            {
+                _zoomProgress += Time.deltaTime / ZoomInDuration;
+                Camera.main.fieldOfView = Mathf.Lerp(DefaultFOV, ZoomFOV, _zoomProgress);
+            }
+            else
+            {
+                _zoomProgress += Time.deltaTime / ZoomOutDuration;
+                Camera.main.fieldOfView = Mathf.Lerp(ZoomFOV, DefaultFOV, _zoomProgress);
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.LeftBracket)) // '['
         {
@@ -101,9 +120,11 @@ public class PlayerGunFire : MonoBehaviour
             }
             CurrentGun = GunInventory[_currentGunIndex];
             _isZoomMode = false;
+            _zoomProgress = 1f;
             RefreshZoomMode();
             RefreshGun();
             RefreshUI();
+            
         }
         else if (Input.GetKeyDown(KeyCode.RightBracket)) // ']'
         {
@@ -115,36 +136,44 @@ public class PlayerGunFire : MonoBehaviour
             }
             CurrentGun = GunInventory[_currentGunIndex];
             _isZoomMode = false;
+            _zoomProgress = 1f;
             RefreshZoomMode();
             RefreshGun();
             RefreshUI();
+            
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             _currentGunIndex = 0;
             CurrentGun = GunInventory[0];
             _isZoomMode = false;
+            _zoomProgress = 1f;
             RefreshZoomMode();
             RefreshGun();
             RefreshUI();
+            
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _currentGunIndex = 1;
             CurrentGun = GunInventory[1];
             _isZoomMode = false;
+            _zoomProgress = 1f;
             RefreshZoomMode();
             RefreshGun();
             RefreshUI();
+            
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             _currentGunIndex = 2;
             CurrentGun = GunInventory[2];
             _isZoomMode = false;
+            _zoomProgress = 1f;
             RefreshZoomMode();
             RefreshGun();
             RefreshUI();
+            
         }
 
         if (Input.GetKeyDown(KeyCode.R) && CurrentGun.BulletRemainCount < CurrentGun.BulletMaxCount)

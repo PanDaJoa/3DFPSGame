@@ -6988,6 +6988,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentGun: {fileID: 1415639558}
+  _currentGunIndex: 0
+  _timer: 0
+  _isZoomMode: 0
   CrosshairUI: {fileID: 2065129295}
   CrosshairZoomUI: {fileID: 991207741}
   GunInventory:
@@ -6996,10 +6999,9 @@ MonoBehaviour:
   - {fileID: 357410514}
   HitEffect: {fileID: 135125296}
   BulletTextUI: {fileID: 1042950988}
+  _isReloading: 0
   ReloadTextObject: {fileID: 364867366}
   GunImageUI: {fileID: 982508382}
-  minimum: -1
-  maximum: 1
 --- !u!1 &1988178484
 GameObject:
   m_ObjectHideFlags: 0
