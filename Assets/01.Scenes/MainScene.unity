@@ -264,8 +264,8 @@ GameObject:
   - component: {fileID: 73087828}
   - component: {fileID: 73087832}
   - component: {fileID: 73087831}
-  - component: {fileID: 73087830}
   - component: {fileID: 73087829}
+  - component: {fileID: 73087833}
   m_Layer: 7
   m_Name: Monster (1)
   m_TagString: Monster
@@ -306,31 +306,14 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 2118393321}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
---- !u!136 &73087830
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73087827}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
 --- !u!23 &73087831
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -381,6 +364,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73087827}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &73087833
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73087827}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &75820948
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bf2dabdf790cb4eade5f68a0a3c66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyEffect: {fileID: 0}
+  DestroyEffect: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
   UpPower: 50
   RotationPower: 10
   hitCount: 0
@@ -903,7 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bf2dabdf790cb4eade5f68a0a3c66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyEffect: {fileID: 0}
+  DestroyEffect: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
   UpPower: 50
   RotationPower: 10
   hitCount: 0
@@ -1303,8 +1312,8 @@ GameObject:
   - component: {fileID: 273184224}
   - component: {fileID: 273184228}
   - component: {fileID: 273184227}
-  - component: {fileID: 273184226}
   - component: {fileID: 273184225}
+  - component: {fileID: 273184229}
   m_Layer: 7
   m_Name: Monster (3)
   m_TagString: Monster
@@ -1345,31 +1354,14 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 1403079058}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
---- !u!136 &273184226
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 273184223}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
 --- !u!23 &273184227
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1420,6 +1412,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273184223}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &273184229
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273184223}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &296072785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,8 +2786,8 @@ GameObject:
   - component: {fileID: 502755971}
   - component: {fileID: 502755970}
   - component: {fileID: 502755969}
-  - component: {fileID: 502755968}
   - component: {fileID: 502755972}
+  - component: {fileID: 502755973}
   m_Layer: 7
   m_Name: Monster
   m_TagString: Monster
@@ -2777,29 +2795,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &502755968
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502755967}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &502755969
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2883,8 +2878,40 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 510152997}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
+--- !u!143 &502755973
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502755967}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &510152995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4270,8 +4297,8 @@ GameObject:
   - component: {fileID: 720429089}
   - component: {fileID: 720429093}
   - component: {fileID: 720429092}
-  - component: {fileID: 720429091}
   - component: {fileID: 720429090}
+  - component: {fileID: 720429094}
   m_Layer: 7
   m_Name: Monster (8)
   m_TagString: Monster
@@ -4312,31 +4339,14 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 296072787}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
---- !u!136 &720429091
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 720429088}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
 --- !u!23 &720429092
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4387,6 +4397,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720429088}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &720429094
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720429088}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &736746666
 GameObject:
   m_ObjectHideFlags: 0
@@ -4398,8 +4434,8 @@ GameObject:
   - component: {fileID: 736746667}
   - component: {fileID: 736746671}
   - component: {fileID: 736746670}
-  - component: {fileID: 736746669}
   - component: {fileID: 736746668}
+  - component: {fileID: 736746672}
   m_Layer: 7
   m_Name: Monster (7)
   m_TagString: Monster
@@ -4416,7 +4452,7 @@ Transform:
   m_GameObject: {fileID: 736746666}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.99999124, z: -0, w: 0.0041923937}
-  m_LocalPosition: {x: -6.6, y: 16.08, z: 11.6}
+  m_LocalPosition: {x: -6.600001, y: 16.08, z: 11.600001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4440,31 +4476,14 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 1353034376}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
---- !u!136 &736746669
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736746666}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
 --- !u!23 &736746670
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4515,6 +4534,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736746666}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &736746672
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736746666}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &739600369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4790,7 +4835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bf2dabdf790cb4eade5f68a0a3c66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyEffect: {fileID: 0}
+  DestroyEffect: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
   UpPower: 50
   RotationPower: 10
   hitCount: 0
@@ -5310,7 +5355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bf2dabdf790cb4eade5f68a0a3c66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyEffect: {fileID: 0}
+  DestroyEffect: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
   UpPower: 50
   RotationPower: 10
   hitCount: 0
@@ -5845,7 +5890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bf2dabdf790cb4eade5f68a0a3c66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyEffect: {fileID: 0}
+  DestroyEffect: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
   UpPower: 50
   RotationPower: 10
   hitCount: 0
@@ -6249,8 +6294,8 @@ GameObject:
   - component: {fileID: 1018360713}
   - component: {fileID: 1018360717}
   - component: {fileID: 1018360716}
-  - component: {fileID: 1018360715}
   - component: {fileID: 1018360714}
+  - component: {fileID: 1018360718}
   m_Layer: 7
   m_Name: Monster (4)
   m_TagString: Monster
@@ -6291,31 +6336,14 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 118439936}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
---- !u!136 &1018360715
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018360712}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
 --- !u!23 &1018360716
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6366,6 +6394,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1018360712}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &1018360718
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018360712}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1021856903
 GameObject:
   m_ObjectHideFlags: 0
@@ -7939,7 +7993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bf2dabdf790cb4eade5f68a0a3c66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyEffect: {fileID: 0}
+  DestroyEffect: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
   UpPower: 50
   RotationPower: 10
   hitCount: 0
@@ -8196,8 +8250,8 @@ GameObject:
   - component: {fileID: 1339435412}
   - component: {fileID: 1339435416}
   - component: {fileID: 1339435415}
-  - component: {fileID: 1339435414}
   - component: {fileID: 1339435413}
+  - component: {fileID: 1339435417}
   m_Layer: 7
   m_Name: Monster (9)
   m_TagString: Monster
@@ -8238,31 +8292,14 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 582492957}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
---- !u!136 &1339435414
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339435411}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
 --- !u!23 &1339435415
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8313,6 +8350,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339435411}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &1339435417
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339435411}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1344908626
 GameObject:
   m_ObjectHideFlags: 0
@@ -8324,8 +8387,8 @@ GameObject:
   - component: {fileID: 1344908627}
   - component: {fileID: 1344908631}
   - component: {fileID: 1344908630}
-  - component: {fileID: 1344908629}
   - component: {fileID: 1344908628}
+  - component: {fileID: 1344908632}
   m_Layer: 7
   m_Name: Monster (2)
   m_TagString: Monster
@@ -8366,31 +8429,14 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 1451187091}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
---- !u!136 &1344908629
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1344908626}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
 --- !u!23 &1344908630
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8441,6 +8487,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344908626}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &1344908632
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344908626}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1351385118
 GameObject:
   m_ObjectHideFlags: 0
@@ -10323,8 +10395,8 @@ GameObject:
   - component: {fileID: 1726460710}
   - component: {fileID: 1726460714}
   - component: {fileID: 1726460713}
-  - component: {fileID: 1726460712}
   - component: {fileID: 1726460711}
+  - component: {fileID: 1726460715}
   m_Layer: 7
   m_Name: Monster (6)
   m_TagString: Monster
@@ -10365,31 +10437,14 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 303842485}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
---- !u!136 &1726460712
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726460709}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
 --- !u!23 &1726460713
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10440,6 +10495,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726460709}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &1726460715
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726460709}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1727108144
 GameObject:
   m_ObjectHideFlags: 0
@@ -11329,7 +11410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31bf2dabdf790cb4eade5f68a0a3c66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyEffect: {fileID: 0}
+  DestroyEffect: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
   UpPower: 50
   RotationPower: 10
   hitCount: 0
@@ -11716,8 +11797,8 @@ GameObject:
   - component: {fileID: 2016276061}
   - component: {fileID: 2016276065}
   - component: {fileID: 2016276064}
-  - component: {fileID: 2016276063}
   - component: {fileID: 2016276062}
+  - component: {fileID: 2016276066}
   m_Layer: 7
   m_Name: Monster (5)
   m_TagString: Monster
@@ -11758,31 +11839,14 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthSliderUI: {fileID: 614475097}
+  _characterController: {fileID: 0}
+  _target: {fileID: 0}
   FindDistance: 5
   AttackDistance: 2
---- !u!136 &2016276063
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016276060}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  MoveSpeed: 4
+  StartPoisition: {x: 0, y: 0, z: 0}
+  MoveDistance: 20
+  _currentState: 0
 --- !u!23 &2016276064
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11833,6 +11897,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016276060}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!143 &2016276066
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016276060}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2033605335
 GameObject:
   m_ObjectHideFlags: 0

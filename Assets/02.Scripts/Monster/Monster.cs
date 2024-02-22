@@ -8,7 +8,7 @@ public enum MonsterState // 몬스터의 상태
     Idle,           // 대기
     Trace,          // 추적
     Attack,         // 공격
-    Return,         // 복귀
+    ComeBack,         // 복귀
     Damaged,        // 공격 당함
     Die             // 사망
 }
@@ -29,6 +29,7 @@ public class Monster : MonoBehaviour, IHitable
     public float MoveSpeed = 4f;  // 이동 상태
     public Vector3 StartPoisition;     // 시작 위치
     public float MoveDistance = 40f; // 움직일 수 있는 거리
+    public const float TOLERANCE = 0.1f;
 
     private MonsterState _currentState = MonsterState.Idle;
 
@@ -68,8 +69,8 @@ public class Monster : MonoBehaviour, IHitable
                 Attack(); 
                 break;
 
-            case MonsterState.Return:
-                Return(); 
+            case MonsterState.ComeBack:
+                Comeback(); 
                 break;
         }
     }
@@ -96,35 +97,37 @@ public class Monster : MonoBehaviour, IHitable
         // 2. 이동한다.
         _characterController.Move(dir * MoveSpeed * Time.deltaTime);
         // 3. 쳐다본다.
-        transform.LookAt(_target);
+        transform.forward = dir; //(_target) 
         if (Vector3.Distance(transform.position, StartPoisition) >= MoveDistance)
         {
-            Debug.Log("상태 전환: Trace -> Return");
-            _currentState = MonsterState.Return;
+            Debug.Log("상태 전환: Trace -> ComeBack");
+            _currentState = MonsterState.ComeBack;
         }
-        // if (Vector3.Distance(_target.position, transform.position) <= AttackDistance)
-        // {
-        //     Debug.Log("상태 전환: Trace -> Attack");
-        //     _currentState = MonsterState.Attack;
-        // }
+        if (Vector3.Distance(_target.position, transform.position) <= AttackDistance)
+        {
+            Debug.Log("상태 전환: Trace -> Attack");
+            _currentState = MonsterState.Attack;
+        }
     }
     private void Attack()
     {
 
     }
-    private void Return()
+    private void Comeback()
     {
         Vector3 dir = StartPoisition - this.transform.position;
         dir.y = 0;
         dir.Normalize();
         // 2. 이동한다.
         _characterController.Move(dir * MoveSpeed * Time.deltaTime);
-        // 3. 쳐다본다.
-        transform.LookAt(_target);
 
-        if (this.gameObject.transform.position == StartPoisition)
-        {
-            Debug.Log("상태 전환: Idle");
+        // 3. 쳐다본다.
+        transform.forward = dir;
+
+        // 몬스터가 시작 위치에 가까워졌을 때 Idle 상태로 전환
+        if (Vector3.Distance(transform.position, StartPoisition) <= TOLERANCE)
+        { 
+            Debug.Log("상태 전환: Comeback -> idle");
             _currentState = MonsterState.Idle;
         }
     }
