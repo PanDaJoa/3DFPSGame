@@ -69,10 +69,12 @@ public class Drum : MonoBehaviour, IHitable
             Drum drum = null;
             if (c.TryGetComponent<Drum>(out drum))
             {
+                // 주변 드럼 폭파
                 drum.Explosion();
             }
         }
 
+        ItemObjectFactory.Instance.MakePercent(transform.position);
 
         StartCoroutine(DestroyAfterSeconds(3));
     }

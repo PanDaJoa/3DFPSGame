@@ -148,4 +148,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1058146b6d26e42866589cc9fae9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemType: 0
+  ItemType: 1
+  eatDistance: 5

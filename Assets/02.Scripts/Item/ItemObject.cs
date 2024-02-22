@@ -2,54 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ItemObject : MonoBehaviour
 {
     public ItemType ItemType;
+    private float eatDistance = 10.0f;  // 아이템을 먹을 수 있는 최소 거리
+    private GameObject player;  // 플레이어 객체
+    private bool isFollowingPlayer = false;
 
-    // Todo 1. 아이템 프리팹을 3개(Health, Stamina, Bullet) 만든다. (도형이나 색깔을 다르게해서 구현)
-    // Todo 2. 플레이어와 일정 거리가 되면 아이템이 먹어지고 사라진다.
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        // 플레이어와 나의 거리를 알고 싶다.
+ 
+        player = GameObject.FindGameObjectWithTag("Player");  // 플레이어 객체를 가져옵니다.
+    }
 
-        if (other.CompareTag("Player"))
+    private void Update()
+    {
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+        if (distance <= eatDistance && !isFollowingPlayer)  // 거리가 eatDistance 이하이며, 아직 플레이어를 따라가지 않았으면,
         {
-
-
-
-            // 1. 아이템 매니저(인벤토리)에 추가하고,
-            if(ItemType == ItemType.Health)
-            {
-                ItemManager.Instance.AddItem(ItemType.Health);
-                ItemManager.Instance.RefreshUI();
-                // 플레이어와 나의 거리를 알고 싶다.
-                float distance = Vector3.Distance(other.transform.position, transform.position);
-                Debug.Log(distance);
-            }
-            if (ItemType == ItemType.Stamina)
-            {
-                ItemManager.Instance.AddItem(ItemType.Stamina);
-                ItemManager.Instance.RefreshUI();
-                // 플레이어와 나의 거리를 알고 싶다.
-                float distance = Vector3.Distance(other.transform.position, transform.position);
-                Debug.Log(distance);
-            }
-            if (ItemType == ItemType.Bullet)
-            {
-                ItemManager.Instance.AddItem(ItemType.Bullet);
-                ItemManager.Instance.RefreshUI();
-                // 플레이어와 나의 거리를 알고 싶다.
-                float distance = Vector3.Distance(other.transform.position, transform.position);
-                Debug.Log(distance);
-            }
-
-
-            // 2. 사라진다.
-            Destroy(gameObject);
+            StartCoroutine(MoveToPlayer());
+            isFollowingPlayer = true;  // 아이템이 플레이어를 따라가기 시작했음을 표시합니다.
         }
     }
 
-    // 실습 과제 31. 몬스터가 죽으면 아이템이 드랍 (Health: 20% Stamina: 20% Bullet:10%)
-    // 실습 과제 32. 일정 거리가 되면 아이템이 Slerp으로 날라오게 하기 (중간점 랜덤)
+    private void EatItem()
+    {
+        if (ItemType == ItemType.Health)
+        {
+            ItemManager.Instance.AddItem(ItemType.Health);
+            ItemManager.Instance.RefreshUI();
+        }
+        else if (ItemType == ItemType.Stamina)
+        {
+            ItemManager.Instance.AddItem(ItemType.Stamina);
+            ItemManager.Instance.RefreshUI();
+        }
+        else if (ItemType == ItemType.Bullet)
+        {
+            ItemManager.Instance.AddItem(ItemType.Bullet);
+            ItemManager.Instance.RefreshUI();
+        }
+        gameObject.SetActive(false); // 아이템 객체를 파괴합니다.
+    }
+    private Vector3 BezierLerp(Vector3 start, Vector3 center, Vector3 end, float progress)
+    {
+        Vector3 m0 = Vector3.Lerp(start, center, progress);
+        Vector3 m1 = Vector3.Lerp(center, end, progress);
+        return Vector3.Lerp(m0, m1, progress);
+    }
+    IEnumerator MoveToPlayer()
+    {
+        while (true)  // 무한 루프를 통해 아이템이 플레이어를 계속 따라가도록 합니다.
+        {
+            Vector3 start = transform.position;
+            Vector3 end = player.transform.position;
+            Vector3 center = (start + end) / 2 + new Vector3(0, 1, 0);
+
+            for (float t = 0; t <= 1; t += Time.deltaTime)
+            {
+                transform.position = BezierLerp(start, center, end, t);
+                yield return null;
+            }
+        }
+
+
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")  // 충돌한 객체의 태그가 "Player"일 때,
+        {
+            EatItem();  // 아이템을 먹습니다.
+            StopCoroutine(MoveToPlayer()); // 아이템이 사라질 때 코루틴을 중지합니다
+        }
+    }
 }
