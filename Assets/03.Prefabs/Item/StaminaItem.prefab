@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1373503140532106925}
   - component: {fileID: 4097772875051762453}
   - component: {fileID: 140332873489086247}
+  - component: {fileID: 2739785874145247892}
   m_Layer: 0
   m_Name: StaminaItem
   m_TagString: Untagged
@@ -105,10 +106,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 1.655673
+  m_Height: 3.311346
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.121798515, y: 0.17061353, z: 0.09960437}
 --- !u!54 &4097772875051762453
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,5 +149,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1058146b6d26e42866589cc9fae9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemType: 1
-  eatDistance: 5
+  ItemType: 0
+  _target: {fileID: 0}
+  ExplosionRadius: 3
+  FindDistance: 10
+  MoveSpeed: 10
+--- !u!143 &2739785874145247892
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4790919223364696449}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}

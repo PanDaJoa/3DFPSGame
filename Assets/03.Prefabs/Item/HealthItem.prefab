@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5635034395328879330}
   - component: {fileID: 525311153488959287}
   - component: {fileID: 6363803070810973632}
+  - component: {fileID: -8847829965098731433}
   m_Layer: 0
   m_Name: HealthItem
   m_TagString: Untagged
@@ -105,8 +106,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2991819, y: 1.3700836, z: 1.8396267}
+  m_Center: {x: 0.045526505, y: 0.18504179, z: 0.023098886}
 --- !u!54 &525311153488959287
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,3 +148,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemType: 0
+  _target: {fileID: 0}
+  ExplosionRadius: 3
+  FindDistance: 10
+  MoveSpeed: 10
+--- !u!143 &-8847829965098731433
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008878369757723672}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}

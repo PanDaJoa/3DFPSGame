@@ -1,80 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using static UnityEditor.Progress;
+using static UnityEngine.GraphicsBuffer;
 
+public enum ItemState
+{
+    Idle,   // 대기
+    Trace   // 추적
+}
 public class ItemObject : MonoBehaviour
 {
     public ItemType ItemType;
-    private float eatDistance = 10.0f;  // 아이템을 먹을 수 있는 최소 거리
-    private GameObject player;  // 플레이어 객체
-    private bool isFollowingPlayer = false;
+    private ItemState _itemState = ItemState.Idle;
 
+    public Transform _target;
+    public float ExplosionRadius = 3;
+    public float FindDistance = 7;
+    public float MoveSpeed = 50f;
+
+    private Vector3 _itemStartPosition;
+    private Vector3 _itemEndPosition;
+    private const float item_DURATION = 0.2f;
+    private float _knockbackProgress = 0f;
+    
+
+    private CharacterController _characterController;
     private void Start()
     {
- 
-        player = GameObject.FindGameObjectWithTag("Player");  // 플레이어 객체를 가져옵니다.
+        _characterController = GetComponent<CharacterController>();
+        _target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
     {
-        float distance = Vector3.Distance(player.transform.position, transform.position);
-        if (distance <= eatDistance && !isFollowingPlayer)  // 거리가 eatDistance 이하이며, 아직 플레이어를 따라가지 않았으면,
+        int layer = LayerMask.GetMask("Player");
+        Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius, layer);
+
+        switch (_itemState)
         {
-            StartCoroutine(MoveToPlayer());
-            isFollowingPlayer = true;  // 아이템이 플레이어를 따라가기 시작했음을 표시합니다.
+            case ItemState.Idle:
+                Idle();
+                break;
+            case ItemState.Trace:
+                Trace();
+                break;
+
         }
     }
 
-    private void EatItem()
+    private void Idle()
     {
-        if (ItemType == ItemType.Health)
+        if (Vector3.Distance(_target.position, transform.position) <= FindDistance)
         {
-            ItemManager.Instance.AddItem(ItemType.Health);
+            Debug.Log("상태전환: Idle -> Trace");
+            _itemState = ItemState.Trace;
+        }
+    }
+    private void Trace()
+    {
+        Vector3 dir = _target.transform.position - this.transform.position;
+        dir.Normalize();
+
+        _characterController.Move(dir * MoveSpeed * Time.deltaTime);
+        transform.LookAt(_target);
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+
+
+        if (other.CompareTag("Player"))
+        {
+            float distance = Vector3.Distance(other.transform.position, transform.position);
+            Debug.Log(distance);
+            ItemManager.Instance.AddItem(ItemType);
             ItemManager.Instance.RefreshUI();
-        }
-        else if (ItemType == ItemType.Stamina)
-        {
-            ItemManager.Instance.AddItem(ItemType.Stamina);
-            ItemManager.Instance.RefreshUI();
-        }
-        else if (ItemType == ItemType.Bullet)
-        {
-            ItemManager.Instance.AddItem(ItemType.Bullet);
-            ItemManager.Instance.RefreshUI();
-        }
-        gameObject.SetActive(false); // 아이템 객체를 파괴합니다.
-    }
-    private Vector3 BezierLerp(Vector3 start, Vector3 center, Vector3 end, float progress)
-    {
-        Vector3 m0 = Vector3.Lerp(start, center, progress);
-        Vector3 m1 = Vector3.Lerp(center, end, progress);
-        return Vector3.Lerp(m0, m1, progress);
-    }
-    IEnumerator MoveToPlayer()
-    {
-        while (true)  // 무한 루프를 통해 아이템이 플레이어를 계속 따라가도록 합니다.
-        {
-            Vector3 start = transform.position;
-            Vector3 end = player.transform.position;
-            Vector3 center = (start + end) / 2 + new Vector3(0, 1, 0);
 
-            for (float t = 0; t <= 1; t += Time.deltaTime)
-            {
-                transform.position = BezierLerp(start, center, end, t);
-                yield return null;
-            }
+            gameObject.SetActive(false);
+
         }
 
 
     }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")  // 충돌한 객체의 태그가 "Player"일 때,
-        {
-            EatItem();  // 아이템을 먹습니다.
-            StopCoroutine(MoveToPlayer()); // 아이템이 사라질 때 코루틴을 중지합니다
-        }
-    }
+
 }
+
+
