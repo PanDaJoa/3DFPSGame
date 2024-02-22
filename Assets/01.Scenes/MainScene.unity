@@ -312,7 +312,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!23 &73087831
 MeshRenderer:
@@ -1360,7 +1361,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!23 &273184227
 MeshRenderer:
@@ -2884,7 +2886,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!143 &502755973
 CharacterController:
@@ -4345,7 +4348,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!23 &720429092
 MeshRenderer:
@@ -4482,7 +4486,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!23 &736746670
 MeshRenderer:
@@ -6342,7 +6347,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!23 &1018360716
 MeshRenderer:
@@ -8298,7 +8304,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!23 &1339435415
 MeshRenderer:
@@ -8435,7 +8442,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!23 &1344908630
 MeshRenderer:
@@ -10443,7 +10451,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!23 &1726460713
 MeshRenderer:
@@ -11845,7 +11854,8 @@ MonoBehaviour:
   AttackDistance: 2
   MoveSpeed: 4
   StartPoisition: {x: 0, y: 0, z: 0}
-  MoveDistance: 20
+  MoveDistance: 10
+  Damage: 10
   _currentState: 0
 --- !u!23 &2016276064
 MeshRenderer:
