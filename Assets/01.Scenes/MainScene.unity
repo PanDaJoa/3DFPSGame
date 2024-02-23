@@ -6057,7 +6057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShakingDuration: 0.2
-  ShakingPower: 0.025
+  ShakingPower: 0.09
 --- !u!4 &864359108
 Transform:
   m_ObjectHideFlags: 0
