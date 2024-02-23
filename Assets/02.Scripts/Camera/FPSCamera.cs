@@ -12,7 +12,7 @@ public class FPSCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = Target.position;
+        transform.localPosition = Target.position;
 
         Vector2 xy = CameraManager.Instance.XY;
         transform.eulerAngles = new Vector3(-xy.y, xy.x, 0);

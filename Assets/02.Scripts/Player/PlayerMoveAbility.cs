@@ -55,10 +55,12 @@ public class PlayerMoveAbility : MonoBehaviour, IHitable
     public float MaxHealth = 100;
     public Slider HealthSliderUI;
 
+    public Image HitEffectImageUI;
+    public float HitEffectDelay = 0.2f;
+
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
-       
+        _characterController = GetComponent<CharacterController>();       
     }
 
     private void Start()
@@ -124,9 +126,14 @@ public class PlayerMoveAbility : MonoBehaviour, IHitable
         StaminaSliderUI.value = Stamina / MaxStamina;
 
 
-        // 구현 순서 : 
+        // 땅에 닿았을 때
         if (_characterController.isGrounded)
         {
+            if (_yVelocity < -20)
+            {
+                Hit(10 * (int)(_yVelocity / -10f));
+            }
+
             _isJumping = false;
             _isClimbing = false;
             _yVelocity = 0f;
@@ -183,10 +190,22 @@ public class PlayerMoveAbility : MonoBehaviour, IHitable
     }
     public void Hit(int damage)
     {
+        StartCoroutine(HitEffect_Coroutine(HitEffectDelay));
+        CameraManager.Instance.CameraShake.Shake();
         Health -= damage;
         if (Health <= 0)
         {
-            Destroy(gameObject);
+            
+            HealthSliderUI.value = 0f;
+           gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator HitEffect_Coroutine(float delay)
+    {
+        HitEffectImageUI.gameObject.SetActive(true);
+        // 과제 40. 히트 이펙트 이미지 0.3초동안 보이게 구현
+        yield return new WaitForSeconds(HitEffectDelay);
+        HitEffectImageUI.gameObject.SetActive(false);
     }
 }

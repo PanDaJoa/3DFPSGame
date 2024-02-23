@@ -55,6 +55,7 @@ public class ItemObject : MonoBehaviour
     {
         _progress = 0f;
         _traceCoroutine = null;
+        _itemState = ItemState.Idle;
     }
     private void Idle()
     {
@@ -107,6 +108,7 @@ public class ItemObject : MonoBehaviour
 
         // Trace가 완료된 후의 로직 추가
         ItemManager.Instance.AddItem(ItemType);
+        ItemManager.Instance.RefreshUI();
         // 2. 사라진다.        
         gameObject.SetActive(false);
     }
