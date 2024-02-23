@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 839796263523645148}
   - component: {fileID: 5863922231715822001}
   - component: {fileID: 2254570040418378599}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,11 +147,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1058146b6d26e42866589cc9fae9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemType: 0
-  _target: {fileID: 0}
+  ItemType: 2
+  _player: {fileID: 0}
   ExplosionRadius: 3
-  FindDistance: 10
-  MoveSpeed: 10
+  EatDistance: 10
+  MoveSpeed: 1
+  _startPoisition: {x: 0, y: 0, z: 0}
 --- !u!143 &2254570040418378599
 CharacterController:
   m_ObjectHideFlags: 0

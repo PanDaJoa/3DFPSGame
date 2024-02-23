@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4097772875051762453}
   - component: {fileID: 140332873489086247}
   - component: {fileID: 2739785874145247892}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: StaminaItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,11 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1058146b6d26e42866589cc9fae9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemType: 0
-  _target: {fileID: 0}
+  ItemType: 1
+  _player: {fileID: 0}
   ExplosionRadius: 3
-  FindDistance: 10
-  MoveSpeed: 10
+  EatDistance: 10
+  MoveSpeed: 1
 --- !u!143 &2739785874145247892
 CharacterController:
   m_ObjectHideFlags: 0

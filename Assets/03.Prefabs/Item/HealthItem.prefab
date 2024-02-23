@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 525311153488959287}
   - component: {fileID: 6363803070810973632}
   - component: {fileID: -8847829965098731433}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HealthItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,10 +148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemType: 0
-  _target: {fileID: 0}
+  _player: {fileID: 0}
   ExplosionRadius: 3
-  FindDistance: 10
-  MoveSpeed: 10
+  EatDistance: 10
+  MoveSpeed: 1
+  _startPoisition: {x: 0, y: 0, z: 0}
 --- !u!143 &-8847829965098731433
 CharacterController:
   m_ObjectHideFlags: 0

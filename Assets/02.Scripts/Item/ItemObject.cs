@@ -5,36 +5,40 @@ using static UnityEngine.GraphicsBuffer;
 
 public enum ItemState
 {
-    Idle,   // 대기
-    Trace   // 추적
+    Idle, // 대기(플레이어와의 거리를 체크한다)
+    // if(충분히 가까워 지면..)
+    Trace // 날라오는 상태 (0.6초에 걸쳣거 Slerp로 플레이어에게 날아온다.)
 }
 public class ItemObject : MonoBehaviour
 {
     public ItemType ItemType;
+
+    // 실습 과제 36. 상태패턴 방식으로 일정 거리가 되면 아이템이 Slerp로 날아오게 하기 (대기 상태, 날아오는 상태)
     private ItemState _itemState = ItemState.Idle;
 
-    public Transform _target;
+    public Transform _player;
     public float ExplosionRadius = 3;
-    public float FindDistance = 7;
-    public float MoveSpeed = 50f;
+    public float EatDistance = 10;
+    public float MoveSpeed = 15f;
 
-    private Vector3 _itemStartPosition;
-    private Vector3 _itemEndPosition;
-    private const float item_DURATION = 0.2f;
-    private float _knockbackProgress = 0f;
-    
+
+
+    public Vector3 _startPoisition;
+    private const float TRACE_DURATION = 0.6f;
+    private float _progress = 0;
 
     private CharacterController _characterController;
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
-        _target = GameObject.FindGameObjectWithTag("Player").transform;
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _startPoisition = transform.position;
     }
 
     private void Update()
     {
-        int layer = LayerMask.GetMask("Player");
-        Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius, layer);
+      //  int layer = LayerMask.GetMask("Player");
+       // Collider[] colliders = Physics.OverlapSphere(transform.position, ExplosionRadius, layer);
 
         switch (_itemState)
         {
@@ -47,42 +51,65 @@ public class ItemObject : MonoBehaviour
 
         }
     }
-
+    public void Init()
+    {
+        _progress = 0f;
+        _traceCoroutine = null;
+    }
     private void Idle()
     {
-        if (Vector3.Distance(_target.position, transform.position) <= FindDistance)
+        float distance = Vector3.Distance(_player.position, transform.position);
+        if (distance <= EatDistance)
+        {
+            _itemState = ItemState.Trace;
+        }
+        /*if (Vector3.Distance(_player.position, transform.position) <= EatDistance)
         {
             Debug.Log("상태전환: Idle -> Trace");
             _itemState = ItemState.Trace;
-        }
+        }*/
     }
+
+    private Coroutine _traceCoroutine;
     private void Trace()
     {
-        Vector3 dir = _target.transform.position - this.transform.position;
+
+        if (_traceCoroutine == null)
+        {
+            _traceCoroutine = StartCoroutine(Trace_Coroutine());
+        }
+        /*
+        }*/
+
+
+
+        // Slerp( 시작점, 종료점 , 진행도)
+        // 진행도를 누적할 시간
+
+        /*Vector3 dir = _player.transform.position - this.transform.position;
         dir.Normalize();
 
-        _characterController.Move(dir * MoveSpeed * Time.deltaTime);
-        transform.LookAt(_target);
+        transform.position = Vector3.Slerp(StartPoisition,_player.transform.position, _flyingProgress);
+        _characterController.Move(dir * MoveSpeed *Time.deltaTime);
+        transform.LookAt(_player);*/
 
     }
-    private void OnTriggerEnter(Collider other)
+
+    private IEnumerator Trace_Coroutine()
     {
-
-
-        if (other.CompareTag("Player"))
+        
+        while (_progress < 0.6)
         {
-            float distance = Vector3.Distance(other.transform.position, transform.position);
-            Debug.Log(distance);
-            ItemManager.Instance.AddItem(ItemType);
-            ItemManager.Instance.RefreshUI();
-
-            gameObject.SetActive(false);
-
+            _progress += Time.deltaTime / TRACE_DURATION;
+            transform.position = Vector3.Slerp(_startPoisition, _player.position, _progress);
+            yield return null;
         }
 
-
+        // Trace가 완료된 후의 로직 추가
+        ItemManager.Instance.AddItem(ItemType);
+        // 2. 사라진다.        
+        gameObject.SetActive(false);
     }
-
 }
 
 
