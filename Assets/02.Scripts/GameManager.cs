@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,12 +16,25 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance { get; private set; }
+
     // 게임의 상태는 처음에 "준비" 상태
-    public GameState State = GameState.Ready;
+    public GameState State  { get; private set;}  = GameState.Ready;
 
     public Text StateTextUI;
 
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     private void Start()
     {
         StartCoroutine(Start_Coroutine());
@@ -46,16 +60,13 @@ public class GameManager : MonoBehaviour
     //4. 플레이를 하다가 
     public PlayerMoveAbility Player;
 
-    private void Update()
+    public void GameOver()
     {
-        // 5. 플레이어 체력이 0이 되면 "게임 오버" 상태
-        if (Player.Health <= 0)
-        {
-            State = GameState.Over;
-            StateTextUI.gameObject.SetActive(true);
-            Refresh();
-        }
+        State = GameState.Over;
+        StateTextUI.gameObject.SetActive(true);
+        Refresh();
     }
+
 
     public void Refresh()
     {
