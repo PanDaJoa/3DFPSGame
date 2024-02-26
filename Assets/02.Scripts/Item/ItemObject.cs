@@ -108,7 +108,6 @@ public class ItemObject : MonoBehaviour
 
         // Trace가 완료된 후의 로직 추가
         ItemManager.Instance.AddItem(ItemType);
-        ItemManager.Instance.RefreshUI();
         // 2. 사라진다.        
         gameObject.SetActive(false);
     }
