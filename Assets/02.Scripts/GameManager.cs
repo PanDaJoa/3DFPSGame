@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     // 게임의 상태는 처음에 "준비" 상태
     public GameState State { get; private set; } = GameState.Ready;
 
-    public Text StateTextUI;
+    public TextMeshProUGUI StateTextUI;
 
     private bool isGameActive = false;
 

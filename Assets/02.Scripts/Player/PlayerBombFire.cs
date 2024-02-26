@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,7 @@ public class PlayerBombFire : MonoBehaviour
     public int BombRemainCount;
     public int BombMaxCount = 3;
     // UI 위에 text로 표시하기 (ex. 1/3)
-    public Text BombTextUI;
+    public TextMeshProUGUI BombTextUI;
 
     // 실습 과제 10. 폭탄에 오브젝트 풀링(창고) 적용
     public List<GameObject> BombPool; // 폭탄 창고
@@ -28,10 +29,7 @@ public class PlayerBombFire : MonoBehaviour
     
     private void Start()
     {
-        if (GameManager.instance.State != GameState.Go)
-        {
-            return;
-        }
+
 
         // 폭탄 창고 생성
         BombPool = new List<GameObject>();
@@ -54,6 +52,10 @@ public class PlayerBombFire : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.State != GameState.Go)
+        {
+            return;
+        }
         /* 수류탄 투척 */
         // 1. 마우스 오른쪽 버튼을 눌렀을 때 && 수류탄 개수가 0보다 크면
         if (Input.GetMouseButtonDown(2) && BombRemainCount > 0)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,10 +28,10 @@ public class PlayerGunFireAbility : MonoBehaviour
 
     public ParticleSystem HitEffect; // 총알이 목표물에 맞았을 때의 이펙트
 
-    public Text BulletTextUI; // 총알 개수를 표시하는 UI
+    public TextMeshProUGUI BulletTextUI; // 총알 개수를 표시하는 UI
 
     private bool _isReloading = false;      // 현재 재장전 중인지 표시
-    public GameObject ReloadTextObject; // 재장전 중임을 표시하는 UI
+    public TextMeshProUGUI ReloadTextObject; // 재장전 중임을 표시하는 UI
 
     public Image GunImageUI; // 현재 총의 이미지를 표시하는 UI
 
@@ -187,7 +188,7 @@ public class PlayerGunFireAbility : MonoBehaviour
             }
         }
 
-        ReloadTextObject.SetActive(_isReloading);
+        ReloadTextObject.gameObject.SetActive(_isReloading);
 
 
         _timer += Time.deltaTime;
