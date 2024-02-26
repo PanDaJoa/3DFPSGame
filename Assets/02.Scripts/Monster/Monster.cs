@@ -74,6 +74,10 @@ public class Monster : MonoBehaviour, IHitable
 
     private void Update()
     {
+        if (GameManager.instance.State != GameState.Go)
+        {
+            return;
+        }
         HealthSliderUI.value = (float)Health / (float)MaxHealth;  // 0 ~ 1
 
         // 상태 패턴: 상태에 따라 행동을 다르게 하는 패턴 

@@ -41,5 +41,6 @@ public class CameraShake : MonoBehaviour
             _isShaking = false;
             transform.position = Vector3.zero;
         }
+
     }
 }

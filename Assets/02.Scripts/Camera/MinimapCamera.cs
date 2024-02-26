@@ -20,6 +20,10 @@ public class MinimapCamera : MonoBehaviour
     }
     private void LateUpdate()
     {
+        if (GameManager.instance.State != GameState.Go)
+        {
+            return;
+        }
         Vector3 targetPosition = Target.position;
         targetPosition.y = YDistance;
 

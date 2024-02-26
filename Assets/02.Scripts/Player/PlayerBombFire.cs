@@ -28,6 +28,11 @@ public class PlayerBombFire : MonoBehaviour
     
     private void Start()
     {
+        if (GameManager.instance.State != GameState.Go)
+        {
+            return;
+        }
+
         // 폭탄 창고 생성
         BombPool = new List<GameObject>();
         for (int i = 0; i < BombPoolSize; i++) // 생성할 폭탄 개수 만큼 반복

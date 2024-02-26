@@ -19,10 +19,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance { get; private set; }
 
     // 게임의 상태는 처음에 "준비" 상태
-    public GameState State  { get; private set;}  = GameState.Ready;
+    public GameState State { get; private set; } = GameState.Ready;
 
     public Text StateTextUI;
 
+    private bool isGameActive = false;
 
     private void Awake()
     {
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void Refresh()
     {
-        switch (State) 
+        switch (State)
         {
             case GameState.Ready:
             {
@@ -93,4 +94,5 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
 }

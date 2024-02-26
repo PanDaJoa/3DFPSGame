@@ -75,7 +75,17 @@ public class PlayerMoveAbility : MonoBehaviour, IHitable
     // 3. 이동하기
     void Update()
     {
+        if (GameManager.instance.State != GameState.Go)
+        {
+            return;
+        }
         HealthSliderUI.value = Health / MaxHealth;
+
+        if (GameManager.instance.State != GameState.Go)
+        {
+            return;
+        }
+
         float speed = MoveSpeed; // 5
         // 1. 만약 벽에 닿아 있는데
         if (Stamina > 0 && _characterController.collisionFlags == CollisionFlags.Sides)

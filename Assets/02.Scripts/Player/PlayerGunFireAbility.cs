@@ -85,7 +85,10 @@ public class PlayerGunFireAbility : MonoBehaviour
     }
     private void Update()
     {
-        
+        if (GameManager.instance.State != GameState.Go)
+        {
+            return;
+        }
         // 마우스 휠 버튼 눌렀을 때 && 현재 총이 스나이퍼
         if (Input.GetMouseButtonDown(1) && CurrentGun.GType == GunType.Sniper)
         {
