@@ -112,7 +112,7 @@ public class Monster : MonoBehaviour, IHitable
                 break;
 
             case MonsterState.Die:
-                Damaged();
+                Die();
                 break;
         }
     }
@@ -300,7 +300,7 @@ public class Monster : MonoBehaviour, IHitable
 
     public void Hit(int damage)
     {
-        if (GameManager.instance.State != GameState.Go)
+        if(_currentState == MonsterState.Die)
         {
             return;
         }
@@ -308,9 +308,22 @@ public class Monster : MonoBehaviour, IHitable
         Health -= damage;
         if (Health <= 0)
         {
-            Debug.Log("상태 전환: Any -> Die");
-            _animator.SetTrigger("Die");
-            _currentState = MonsterState.Die;
+
+            if (Random.Range(0, 2) == 0)
+            {
+                Debug.Log("상태 전환: Any -> Die1");
+                _animator.SetTrigger("Die1");
+                _currentState = MonsterState.Die;
+            }
+            else
+            {
+                Debug.Log("상태 전환: Any -> Die2");
+                _animator.SetTrigger("Die2");
+                _currentState = MonsterState.Die;
+
+
+            }
+
         }
         else
         {
@@ -333,9 +346,12 @@ public class Monster : MonoBehaviour, IHitable
 
     private IEnumerator Die_Coroutine() 
     {
+        _navMeshAgent.isStopped = true;
+        _navMeshAgent.ResetPath();
+
         HealthSliderUI.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         // 죽을때 아이템 생성
         ItemObjectFactory.Instance.MakePercent(transform.position);
