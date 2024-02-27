@@ -208,6 +208,9 @@ public class PlayerMoveAbility : MonoBehaviour, IHitable
         StartCoroutine(HitEffect_Coroutine(HitEffectDelay));
         CameraManager.Instance.CameraShake.Shake();
         Health -= damage;
+
+        _animator.SetLayerWeight(1, 1 - Health / (float)MaxHealth);
+
         if (Health <= 0)
         {
             
