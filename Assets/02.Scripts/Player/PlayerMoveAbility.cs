@@ -208,8 +208,7 @@ public class PlayerMoveAbility : MonoBehaviour, IHitable
         StartCoroutine(HitEffect_Coroutine(HitEffectDelay));
         CameraManager.Instance.CameraShake.Shake();
         Health -= damage;
-
-        _animator.SetLayerWeight(1, 1 - Health / (float)MaxHealth);
+        RefreshAnimation();
 
         if (Health <= 0)
         {
@@ -227,5 +226,10 @@ public class PlayerMoveAbility : MonoBehaviour, IHitable
         // 과제 40. 히트 이펙트 이미지 0.3초동안 보이게 구현
         yield return new WaitForSeconds(HitEffectDelay);
         HitEffectImageUI.gameObject.SetActive(false);
+    }
+
+    public void RefreshAnimation()
+    {
+        _animator.SetLayerWeight(1, 1 - Health / (float)MaxHealth);
     }
 }

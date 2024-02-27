@@ -26,10 +26,11 @@ public class PlayerBombFire : MonoBehaviour
     public List<GameObject> BombPool; // 폭탄 창고
     public int BombPoolSize = 5;
 
-    
+    private Animator _animator;
+
     private void Start()
     {
-
+        _animator = GetComponentInChildren<Animator>();
 
         // 폭탄 창고 생성
         BombPool = new List<GameObject>();
@@ -70,6 +71,8 @@ public class PlayerBombFire : MonoBehaviour
             {
                 if (BombPool[i].activeInHierarchy == false) // 2. 쓸만한 폭탄을 찾는다.
                 {
+                    _animator.SetTrigger("Throw");
+
                     bomb = BombPool[i];
                     bomb.SetActive(true);                   // 3. 꺼낸다.
                     break;

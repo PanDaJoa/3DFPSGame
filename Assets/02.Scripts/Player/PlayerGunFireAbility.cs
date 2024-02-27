@@ -35,7 +35,8 @@ public class PlayerGunFireAbility : MonoBehaviour
 
     public Image GunImageUI; // 현재 총의 이미지를 표시하는 UI
 
-    
+    private Animator _animator;
+
 
     private void Start()
     {
@@ -44,6 +45,9 @@ public class PlayerGunFireAbility : MonoBehaviour
         // 총알 개수 초기화
         RefreshUI();
         RefreshGun();
+
+        _animator = GetComponentInChildren<Animator>();
+        
     }
 
     public void RefreshUI()
@@ -196,6 +200,8 @@ public class PlayerGunFireAbility : MonoBehaviour
         // 1. 만약에 마우스 왼쪽 버튼을 누른 상태 && 쿨타임이 다 지난 상태
         if (Input.GetMouseButton(0) && _timer >= CurrentGun.FireCooltime)
         {
+            _animator.SetTrigger("Shot");
+
             // 총알이 없을 경우 총을 쏘면 재장전
             if (CurrentGun.BulletRemainCount <= 0)
             {
@@ -240,7 +246,7 @@ public class PlayerGunFireAbility : MonoBehaviour
                 HitEffect.Play();
             }
         }
-
+        
     }
 
     private void RefreshGun()

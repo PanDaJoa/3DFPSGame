@@ -41,6 +41,7 @@ public class Item
                 // Todo: 플레이어 체력 꽉차기
                 PlayerMoveAbility playerMoveAbility = GameObject.FindWithTag("Player").GetComponent<PlayerMoveAbility>();
                 playerMoveAbility.Health = playerMoveAbility.MaxHealth;
+                playerMoveAbility.RefreshAnimation();
                 break;
                 
 
