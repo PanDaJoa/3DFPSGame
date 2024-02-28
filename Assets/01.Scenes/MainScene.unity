@@ -19162,6 +19162,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -5.387645
       objectReference: {fileID: 0}
+    - target: {fileID: 5725204745882729255, guid: 9e13013fc02d77744bc94d831f416f0e, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725204745882729255, guid: 9e13013fc02d77744bc94d831f416f0e, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6428571355641125384, guid: 9e13013fc02d77744bc94d831f416f0e, type: 3}
       propertyPath: BombTextUI
       value: 
