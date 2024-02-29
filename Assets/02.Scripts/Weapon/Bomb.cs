@@ -41,7 +41,8 @@ public class Bomb : MonoBehaviour
             if(hitable != null)
             {
                 // 4. Hit() 한다.
-                hitable.Hit(Damage);
+                DamageInfo damageInfo = new DamageInfo(DamageType.Normal, Damage);
+                hitable.Hit(damageInfo);
             }
         }
        

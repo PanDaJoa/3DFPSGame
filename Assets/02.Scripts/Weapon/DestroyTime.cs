@@ -1,19 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+public enum DeleteType
+{
+    Destory,
+    Inactive,
+}
 public class DestroyTime : MonoBehaviour
 {
-    public float destroyTime = 1.5f;
+    public DeleteType DeleteType;
+    public float DeleteTime = 1.5f;
     private float _timer = 0;
 
     private void Update()
     {
         _timer += Time.deltaTime;
-        if (_timer >= destroyTime)
+        if (_timer >= DeleteTime)
         {
-            Destroy(this.gameObject);
+            if (DeleteType == DeleteType.Destory)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
-
 }

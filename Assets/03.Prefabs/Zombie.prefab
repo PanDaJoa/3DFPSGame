@@ -3539,6 +3539,7 @@ GameObject:
   - component: {fileID: 2805674401473122140}
   - component: {fileID: 8721728724450571076}
   - component: {fileID: 8519256024541269280}
+  - component: {fileID: 8007717871943084154}
   m_Layer: 7
   m_Name: Zombie
   m_TagString: Monster
@@ -3638,6 +3639,7 @@ MonoBehaviour:
   Damage: 10
   KnockbackPower: 1
   PatrolTarget: {fileID: 0}
+  BloodPrefab: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
 --- !u!195 &8721728724450571076
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3686,6 +3688,72 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!205 &8007717871943084154
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407048909219663081}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.0000016093254, y: 1.378903, z: -0.061241686}
+  m_Size: 2.9851367
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1333656681071767045}
+    - renderer: {fileID: 1550871293646767520}
+    - renderer: {fileID: 82905043982775945}
+    - renderer: {fileID: 7513832738639880173}
+    - renderer: {fileID: 5450634041988740161}
+    - renderer: {fileID: 6870228634796480668}
+    - renderer: {fileID: 6510131775672201827}
+    - renderer: {fileID: 7092451365140972253}
+    - renderer: {fileID: 237037076343214337}
+    - renderer: {fileID: 3341544832437497464}
+    - renderer: {fileID: 3304326573562465786}
+    - renderer: {fileID: 671779078413591154}
+    - renderer: {fileID: 1525465723732205783}
+    - renderer: {fileID: 572375636591475483}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1333656681071767045}
+    - renderer: {fileID: 1550871293646767520}
+    - renderer: {fileID: 82905043982775945}
+    - renderer: {fileID: 7513832738639880173}
+    - renderer: {fileID: 5450634041988740161}
+    - renderer: {fileID: 6870228634796480668}
+    - renderer: {fileID: 6510131775672201827}
+    - renderer: {fileID: 7092451365140972253}
+    - renderer: {fileID: 237037076343214337}
+    - renderer: {fileID: 3341544832437497464}
+    - renderer: {fileID: 3304326573562465786}
+    - renderer: {fileID: 671779078413591154}
+    - renderer: {fileID: 1525465723732205783}
+    - renderer: {fileID: 572375636591475483}
+  - screenRelativeHeight: 0.20243095
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1333656681071767045}
+    - renderer: {fileID: 1550871293646767520}
+    - renderer: {fileID: 82905043982775945}
+    - renderer: {fileID: 7513832738639880173}
+    - renderer: {fileID: 5450634041988740161}
+    - renderer: {fileID: 6870228634796480668}
+    - renderer: {fileID: 6510131775672201827}
+    - renderer: {fileID: 7092451365140972253}
+    - renderer: {fileID: 237037076343214337}
+    - renderer: {fileID: 3341544832437497464}
+    - renderer: {fileID: 3304326573562465786}
+    - renderer: {fileID: 671779078413591154}
+    - renderer: {fileID: 1525465723732205783}
+    - renderer: {fileID: 572375636591475483}
+  m_Enabled: 1
 --- !u!1 &8746385232285844899
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,6 +49,8 @@ public class Monster : MonoBehaviour, IHitable
     private float _idleTimer;
     public Transform PatrolTarget;
 
+    
+    public GameObject BloodPrefab;
 
     private MonsterState _currentState = MonsterState.Idle;
 
@@ -260,7 +262,9 @@ public class Monster : MonoBehaviour, IHitable
         if (playerHitable != null)
         {
             Debug.Log("때렸다!");
-            playerHitable.Hit(Damage);
+
+            DamageInfo damageInfo = new DamageInfo(DamageType.Normal, Damage);
+            playerHitable.Hit(damageInfo);
             _attackTimer = 0f;
         }
     }
@@ -298,14 +302,23 @@ public class Monster : MonoBehaviour, IHitable
         }
     }
 
-    public void Hit(int damage)
+    public void Hit(DamageInfo damage)
     {
         if(_currentState == MonsterState.Die)
         {
             return;
         }
 
-        Health -= damage;
+        // Todo. 데미지 타입이 크리티컬이면 피흘리기
+        if (damage.DamageType == DamageType.Critical)
+        {
+            BloodFactory.Instance.Make(damage.Position, damage.Normal);
+        }
+        // Todo. 실습 과제 47: 블러드를 팩토리패턴으로 구현하기 (파일 및 클래스명: BloodFactory)
+        
+
+
+        Health -= damage.Amount;
         if (Health <= 0)
         {
 
@@ -361,13 +374,7 @@ public class Monster : MonoBehaviour, IHitable
     }
 
 
-
-
-
-
-
 }
-
 
 
 

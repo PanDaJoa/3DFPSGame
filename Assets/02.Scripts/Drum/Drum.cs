@@ -15,7 +15,7 @@ public class Drum : MonoBehaviour, IHitable
     public float ExplosionRadius = 5; //데미지 범위
 
     private bool isExploding = false;
-    public void Hit(int damage)
+    public void Hit(DamageInfo damageInfo)
     {
         hitCount += 1;
         if (hitCount >= 3)
@@ -49,7 +49,8 @@ public class Drum : MonoBehaviour, IHitable
             if (hitable != null)
             {
                 // 3. 데미지 주기
-                hitable.Hit(Damage);
+                DamageInfo damageInfo = new DamageInfo(DamageType.Normal, Damage);
+                hitable.Hit(damageInfo);
             }
             
         }
