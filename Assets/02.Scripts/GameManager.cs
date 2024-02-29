@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI StateTextUI;
 
-    private bool isGameActive = false;
+    //private bool isGameActive = false;
 
     private void Awake()
     {
