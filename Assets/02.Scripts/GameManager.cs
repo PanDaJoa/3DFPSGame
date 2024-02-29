@@ -10,7 +10,8 @@ using UnityEngine.UI;
 public enum GameState 
 {
     Ready, // 대기
-    Go, // 시작
+    Go,    // 시작
+    Pause, // 일시정지
     Over,  // 오버
 }
 
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     public GameState State { get; private set; } = GameState.Ready;
 
     public TextMeshProUGUI StateTextUI;
+
+    public UI_Option OptionUI;
 
     //private bool isGameActive = false;
 
@@ -95,5 +98,26 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    public void Pause()
+    {
+        State = GameState.Pause;
+        Time.timeScale = 0f;
+    }
+
+    public void Continue()
+    {
+        State = GameState.Go;
+        Time.timeScale = 1f;
+    }
+
+    public void OnOptionButtonClicked()
+    {
+        Debug.Log("옵션버튼을 클릭했습니다.");
+
+        Pause();
+
+        OptionUI.Open();
+    }
+
 
 }

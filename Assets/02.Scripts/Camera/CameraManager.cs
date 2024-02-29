@@ -68,8 +68,8 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         // 마우스 커서 없애고, 고정
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
 
         SetCameraMode(CameraMode.TPS);
     }
@@ -85,7 +85,7 @@ public class CameraManager : MonoBehaviour
         {
             if (Cursor.lockState == CursorLockMode.None)
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
             }
         }
 
@@ -93,11 +93,11 @@ public class CameraManager : MonoBehaviour
         {
             if (Cursor.lockState == CursorLockMode.Locked)
             {
-                Cursor.lockState = CursorLockMode.None;
+                //Cursor.lockState = CursorLockMode.None;
             }
             else
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
             }
         }
 
