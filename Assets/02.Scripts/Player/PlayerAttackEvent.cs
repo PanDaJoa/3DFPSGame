@@ -9,7 +9,7 @@ public class PlayerAttackEvent : MonoBehaviour
 
     public void Start()
     {
-        ThrowEvent = GetComponentInChildren<PlayerBombFire>();
+        ThrowEvent = GetComponentInParent<PlayerBombFire>();
     }
     public void AttackEvent()
     {
