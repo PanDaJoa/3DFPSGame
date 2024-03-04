@@ -7,8 +7,9 @@ using UnityEngine.UI;
 
 public enum SecneNames
 {
-    Lobby, // 0
-    Main   // 1
+    Lobby,  // 0
+    Loading, // 1
+    Main    // 2
 }
 public class LobbyScene : MonoBehaviour
 {
@@ -80,7 +81,7 @@ public class LobbyScene : MonoBehaviour
                 else
                 {
                     // 3. 로그인 성공 -> 메인 씬으로 이동
-                    SceneManager.LoadScene((int)SecneNames.Main);
+                    SceneManager.LoadScene((int)SecneNames.Loading);
                 }
             }
         }
