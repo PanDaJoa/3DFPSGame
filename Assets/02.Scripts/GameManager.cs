@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI StateTextUI;
 
+    public UI_Option OptionUI_End;
+
     public UI_Option OptionUI;
 
     //private bool isGameActive = false;
@@ -93,7 +95,9 @@ public class GameManager : MonoBehaviour
 
             case GameState.Over:
             {
-                StateTextUI.text = "Over...";
+                StateTextUI.text = "GameOver...";
+
+                OptionUI_End.Open();
                 break;
             }
         }
