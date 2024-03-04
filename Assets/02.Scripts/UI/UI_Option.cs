@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI_Option : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class UI_Option : MonoBehaviour
     }
     public void OnOptionButtonClickedReplay()
     {
+        // 씬매니저야.(현재 열려 있는 씬)번 씬을 로드해라
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
         Debug.Log("다시하기.");
     }
     public void OnOptionButtonClickedEnd()
